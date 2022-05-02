@@ -13,6 +13,8 @@ import 'package:doctor_monitor/providers/pdfapi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/src/provider.dart';
 
+import '../pdfDemo.dart';
+
 
 
 class Reportpdf extends StatefulWidget {
@@ -126,49 +128,17 @@ class _ReportpdfState extends State<Reportpdf> {
 
               List<dynamic>? tabledata=context.read(patientProvider).list2;
 
-              // context.read(patientProvider).clearListpdf();
-
-              // Uint8List ecgImage;
-
-             //  var container=
-             //  Center(
-             //      child:Container(
-             //        color: Colors.white,
-             //        child: Sparkline(
-             //          data: context.read(patientProvider).dataFiltered.getRange(0, 700).toList(),
-             //          enableGridLines: true,
-             //          lineColor: Colors.teal,
-             //          lineWidth: 2,
-             //          sharpCorners: false,
-             //          pointsMode: PointsMode.last,
-             //          min:context.read(patientProvider).dataFiltered.getRange(0, 700).toList().reduce(min)-50,
-             //          max:context.read(patientProvider).dataFiltered.getRange(0, 700).toList().reduce(max)+50,
-             //          pointColor: Colors.white70,
-             //          gridLineColor: Colors.lightBlueAccent,
-             //          gridLineWidth: 5,
-             //          // gridLineAmount: 6,
-             //        ),
-             //      )
-             //  );
-             //
-             // await screenshotController
-             //      .captureFromWidget(
-             //    InheritedTheme.captureAll(
-             //        context, Material(child: container)),
-             //    delay: Duration(milliseconds: 500),
-             //    pixelRatio: 1.5,
-             //  )
-             //      .then((capturedImage) async{
-             //    ecgImage=capturedImage;
-             //  });
 
 
 
              await Pdfapi.generateCenteredText(name,gender,age,hbmax,hbmin,hbavg,spo2max,spo2min,spo2avg,
                 tempmax,tempmin,tempavg, sysmax, sysmin, sysavg, diamax, diamin, diaavg,
                    rrmax, rrmin, rravg,context.read(patientProvider).dataFiltered,hrs,
-                  hbmaxL,  hbminL,  spo2minL,  sysminL,  sysmaxL,  dysminL,  dysmaxL,  rrminL,  rrmaxL,  tempminL,  tempmaxL,tabledata);
-                 // .onError((error, stackTrace) =>  null);
+                  hbmaxL,  hbminL,  spo2minL,  sysminL,  sysmaxL,  dysminL,  dysmaxL,  rrminL,  rrmaxL,  tempminL,  tempmaxL,tabledata)
+                 .onError((error, stackTrace) =>  null);
+
+
+
 
               context.read(patientProvider).clearListpdf();
               Navigator.of(context).pop();

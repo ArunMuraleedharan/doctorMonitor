@@ -1,9 +1,11 @@
+// import 'dart:convert';
+// import 'dart:html' as html;
 import 'dart:convert';
-import 'dart:html' as html;
 import 'dart:io';
+// import 'dart:html' as html;
 
 
-
+import 'package:download/download.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'package:open_file/open_file.dart';
@@ -70,32 +72,35 @@ class Pdfapi
 
     ));
     if(kIsWeb)
-      {
-        return webpdf(pdf,name);
-      }
+    {
+      return webpdf(pdf, name+".pdf");
+    }
     else
-      {
-        return saveDocument(name: name,pdf: pdf);
-      }
+    {
+      return saveDocument(name:  name+".pdf",pdf: pdf);
+    }
+
 
   }
+
 
   static Future<File?> webpdf(Document pdf,String name) async
   {
     File? file;
     final bytes = await pdf.save();
-    html.AnchorElement(
-        href:
-        "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(bytes)}")
-      ..setAttribute("download", "$name")
-      ..click();
+    // html.AnchorElement(
+    //     href:
+    //     "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(bytes)}")
+    //   ..setAttribute("download", "$name")
+    //   ..click();
     return file;
   }
 
+
   static Future<File> saveDocument({
 
-     required String name,
-      required Document pdf,
+    required String name,
+    required Document pdf,
   }) async {
     final bytes = await pdf.save();
 
@@ -109,9 +114,12 @@ class Pdfapi
 
   static Future openFile(File file) async {
     final url = file.path;
-
+    print(file.path);
     await OpenFile.open(url);
+
   }
+
+
 
 
 
@@ -146,7 +154,6 @@ class Pdfapi
       ],
     ),
   );
-
 
 
 
@@ -506,8 +513,6 @@ class Pdfapi
         ]);
   // );
 
-
-
   static Widget ecgGraph(List<double> ecg)
   {
 
@@ -626,11 +631,4 @@ class Pdfapi
     ));
   }
 
-
-
 }
-//
-// Center(child: tabledata[tabledata.length-1-i]["RR"]>rrminL&&tabledata[tabledata.length-1-i]["RR"]<rrmaxL?
-// Text(tabledata[tabledata.length-1-i]["RR"].toString()):
-// tabledata[tabledata.length-1-i]["RR"]!=0?
-// Text(tabledata[tabledata.length-1-i]["RR"].toString(),style: TextStyle(color: PdfColors.red)):Text("-")),

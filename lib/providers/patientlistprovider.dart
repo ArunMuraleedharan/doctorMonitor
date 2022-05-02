@@ -134,7 +134,6 @@ class Patient extends ChangeNotifier
   List<String> patient_list_names=[];
   List<String> temp_patient_list=[];
   List<String> search_name_list=[];
-
   List<QueryDocumentSnapshot<Map<String, dynamic>>> vitals=[];
 
   void search_patient_name(String val)
@@ -207,6 +206,7 @@ class Patient extends ChangeNotifier
         patientList.add(e);
         patient_list_names.add(e.get('Name'));
         temp_patient_list.add(e.get('Name'));
+
         notifyListeners();
 
     }).toList();
@@ -730,7 +730,7 @@ void ecg_graph_data(List<double> dataToFilter)
     print("startdate");
    print(startdate);
    // list2?.add(list!.isNotEmpty?list![0]:<Map>[]);
-    list!.isNotEmpty?list2!.add(list![0]):null;
+    list!.isNotEmpty?list2?.add(list![0]):null;
 
     // print(list?[17]["Date"].hour-startdate?.hour);
     list?.forEach((element) {

@@ -4,6 +4,7 @@
 
 import 'package:chart_sparkline/chart_sparkline.dart';
 import 'package:doctor_monitor/main.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:oscilloscope/oscilloscope.dart';
@@ -22,9 +23,11 @@ class EcgMonitor extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).orientation==Orientation.portrait?Nheight*0.4:Nheight*.5,
+      // Nheight*0.4:Nheight*.5, before web
       width: double.infinity,
       // MediaQuery.of(context).orientation==Orientation.portrait? width*0.72:width*0.842,//260,
       child: Container(
+
           decoration: BoxDecoration(
               border: Border.all(width: 1)
           ),
@@ -38,7 +41,7 @@ class EcgMonitor extends StatelessWidget {
                       // context.read(patientProvider).ecg_generator();
                     },
                     child: Container(
-                      height: 200,
+                      // height: 200,
                       color: Colors.black,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
