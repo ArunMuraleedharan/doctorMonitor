@@ -261,7 +261,7 @@ class Patient extends ChangeNotifier
     hbmaxL=patient_detail.get("hbmax");
     hbminL=patient_detail.get("hbmin");
     spo2minL=patient_detail.get("spo2min");
-    sysminL==double.parse(patient_detail.get("sysmin").toString());
+    sysminL=double.parse(patient_detail.get("sysmin").toString());
     sysmaxL=double.parse(patient_detail.get("sysmax").toString());
     dysminL=double.parse(patient_detail.get("dysmin").toString());
     dysmaxL=double.parse(patient_detail.get("dysmax").toString());
@@ -283,6 +283,8 @@ class Patient extends ChangeNotifier
     print(tempmaxL);
     print("tempmin");
     print(tempminL);
+    print("Sysminl");
+    print(sysminL);
     notifyListeners();
   }
 

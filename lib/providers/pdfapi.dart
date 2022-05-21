@@ -496,17 +496,36 @@ class Pdfapi
             // DateFormat.yMEd().add_jms().format(DateTime.now())
             TableRow(children: [
               Center(child: Text(DateFormat.MMMMd().format(tabledata[tabledata.length-1-i]["Date"]))),
-            Center(child: Text(DateFormat.jm().format(tabledata[tabledata.length-1-i]["Date"]))),
-            Center(child: Text(tabledata[tabledata.length-1-i]["HeartRate"].toString())),
-            Center(child: Text(tabledata[tabledata.length-1-i]["SPO2"].toString())),
-              Center(child: Text(tabledata[tabledata.length-1-i]["Systoloic"].toString()+"/"+tabledata[tabledata.length-1-i]["Dystolic"].toString())),
+            Center(child:
+            Text(DateFormat.jm().format(tabledata[tabledata.length-1-i]["Date"]))
+            ),
+            Center(child:tabledata[tabledata.length-1-i]["HeartRate"]!=0?
+            Text(tabledata[tabledata.length-1-i]["HeartRate"].toString(),style:tabledata[tabledata.length-1-i]["HeartRate"]>hbminL&&tabledata[tabledata.length-1-i]["HeartRate"]<hbmaxL?TextStyle(color: PdfColors.black):
+            TextStyle(color: PdfColors.red) ):
+            Text("-")
+            ),
+            Center(child: tabledata[tabledata.length-1-i]["SPO2"]!=0?
+            Text(tabledata[tabledata.length-1-i]["SPO2"].toString(),style:tabledata[tabledata.length-1-i]["SPO2"]>spo2minL?TextStyle(color: PdfColors.black):
+            TextStyle(color: PdfColors.red) ):
+            Text("-")
+            ),
+              Center(child: tabledata[tabledata.length-1-i]["Systoloic"]!=0 || tabledata[tabledata.length-1-i]["Dystolic"]!=0?
+              Text(tabledata[tabledata.length-1-i]["Systoloic"].toString()+"/"+tabledata[tabledata.length-1-i]["Dystolic"].toString(),style:
+              (tabledata[tabledata.length-1-i]["Systoloic"]>sysminL&&tabledata[tabledata.length-1-i]["Systoloic"]<sysmaxL) ||(tabledata[tabledata.length-1-i]["Dystolic"]>dysminL&&tabledata[tabledata.length-1-i]["Dystolic"]<dysmaxL)?
+               TextStyle(color: PdfColors.black):
+              TextStyle(color: PdfColors.red)
+              ):Text("-")
+              ),
 
             Center(child:tabledata[tabledata.length-1-i]["RR"]!=0?
-            Text(tabledata[tabledata.length-1-i]["RR"].toString(),style:tabledata[tabledata.length-1-i]["RR"]>rrminL&&tabledata[tabledata.length-1-i]["RR"]<rrmaxL?TextStyle(color: PdfColors.red):
-            TextStyle(color: PdfColors.black)):
+            Text(tabledata[tabledata.length-1-i]["RR"].toString(),style:tabledata[tabledata.length-1-i]["RR"]>rrminL&&tabledata[tabledata.length-1-i]["RR"]<rrmaxL?TextStyle(color: PdfColors.black):
+            TextStyle(color: PdfColors.red)):
             Text("-")),
 
-            Center(child: Text(tabledata[tabledata.length-1-i]["Temperature"].toString())),
+            Center(child: tabledata[tabledata.length-1-i]["Temperature"]!=0?
+            Text(tabledata[tabledata.length-1-i]["Temperature"].toString(),style: tabledata[tabledata.length-1-i]["Temperature"]>tempminL&&tabledata[tabledata.length-1-i]["Temperature"]<tempmaxL?TextStyle(color: PdfColors.black):
+            TextStyle(color: PdfColors.red)):
+            Text("-")),
               Center(child: Text(tabledata[tabledata.length-1-i]["Sugar"].toString())),
           ]),
 
